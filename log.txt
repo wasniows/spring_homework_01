@@ -1,1 +1,18 @@
 
+06/03/2021 22:44:16 added to DB
+06/03/2021 22:44:16 added to DB
+06/03/2021 22:44:16 print from DB
+06/03/2021 22:44:16 removed from DB
+06/03/2021 22:44:16 print from DB
+06/03/2021 22:47:56 added to List
+06/03/2021 22:47:56 print from List
+06/03/2021 22:47:56 added to List
+06/03/2021 22:47:56 print from List
+06/03/2021 22:47:56 removed from List
+06/03/2021 22:47:56 print from List
+06/03/2021 22:50:36 added to List
+06/03/2021 22:50:36 print from List
+06/03/2021 22:50:36 added to List
+06/03/2021 22:50:36 print from List
+06/03/2021 22:50:36 removed from List
+06/03/2021 22:50:36 print from List

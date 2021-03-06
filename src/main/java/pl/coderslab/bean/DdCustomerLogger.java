@@ -1,10 +1,14 @@
 package pl.coderslab.bean;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class DBCustomerLogger implements CustomerLogger {
+
+public class DdCustomerLogger implements CustomerLogger {
     private static final String CREATE_LOG_QUERY = "INSERT INTO log(log) VALUES (?)";
     private static final String URL = "jdbc:mysql://localhost:3306/logger?useSSL=false&characterEncoding=utf8";
     private static final String USER = "root";

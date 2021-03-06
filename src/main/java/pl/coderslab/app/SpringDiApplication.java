@@ -8,26 +8,31 @@ public class SpringDiApplication {
     public static void main(String[] args) {
 
         AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(Config.class);
+                new AnnotationConfigApplicationContext(AppConfig.class);
 
+        System.out.println("====== SimpleCustomerLogger ==========");
         SimpleCustomerLogger simpleCustomerLogger = context
-                .getBean("simpleCustomerLogger", SimpleCustomerLogger.class);
+                .getBean(SimpleCustomerLogger.class);
         simpleCustomerLogger.log("Operacja");
 
+        System.out.println();
+        System.out.println("====== ListCustomRepository ============");
         Customer customer = new Customer(1, "Jan", "Kowalski");
         Customer customer1 = new Customer(2, "Krzysztof", "Nowak");
 
-        MemoryCustomerRepository memoryCustomerRepository = context
-                .getBean("memoryCustomerRepository", MemoryCustomerRepository.class);
-        memoryCustomerRepository.addCustomer(customer);
-        memoryCustomerRepository.allCustomers();
-        memoryCustomerRepository.addCustomer(customer1);
-        memoryCustomerRepository.allCustomers();
-        memoryCustomerRepository.delCustomer(customer);
-        memoryCustomerRepository.allCustomers();
+        ListCustomerRepository listCustomerRepository = context
+                .getBean(ListCustomerRepository.class);
+        listCustomerRepository.addCustomer(customer);
+        listCustomerRepository.allCustomers();
+        listCustomerRepository.addCustomer(customer1);
+        listCustomerRepository.allCustomers();
+        listCustomerRepository.delCustomer(customer);
+        listCustomerRepository.allCustomers();
 
-        DBCustomerRepository dbCustomerRepository = context
-                .getBean("dbCustomerRepository", DBCustomerRepository.class);
+        System.out.println();
+        System.out.println("==========  DbCustomRepository ==========");
+        DbCustomerRepository dbCustomerRepository = context
+                .getBean(DbCustomerRepository.class);
         dbCustomerRepository.addCustomer(customer);
         dbCustomerRepository.addCustomer(customer1);
         dbCustomerRepository.allCustomers();

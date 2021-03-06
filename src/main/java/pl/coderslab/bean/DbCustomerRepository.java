@@ -1,11 +1,12 @@
 package pl.coderslab.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.Arrays;
 
-public class DBCustomerRepository implements CustomerRepository {
+public class DbCustomerRepository implements CustomerRepository {
 
     private static final String CREATE_CUSTOMER_QUERY = "INSERT INTO customers(id, firstname, lastname) VALUES (?,?,?)";
     private static final String DELETE_CUSTOMER_QUERY = "DELETE FROM customers WHERE id = ?";
@@ -19,12 +20,10 @@ public class DBCustomerRepository implements CustomerRepository {
         return DriverManager.getConnection(URL, USER, PASS);
     }
 
-    private DBCustomerLogger dbCustomerLogger;
+    private CustomerLogger customerLogger;
 
-
-    @Autowired
-    public DBCustomerRepository(DBCustomerLogger dbCustomerLogger) {
-        this.dbCustomerLogger = dbCustomerLogger;
+    public DbCustomerRepository(CustomerLogger customerLogger) {
+        this.customerLogger = customerLogger;
     }
 
     @Override
@@ -38,7 +37,7 @@ public class DBCustomerRepository implements CustomerRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        dbCustomerLogger.log("added to DB");
+        customerLogger.log("added to DB");
     }
 
     @Override
@@ -50,7 +49,7 @@ public class DBCustomerRepository implements CustomerRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        dbCustomerLogger.log("removed from DB");
+        customerLogger.log("removed from DB");
     }
 
     @Override
@@ -68,10 +67,9 @@ public class DBCustomerRepository implements CustomerRepository {
             }
             System.out.println(Arrays.toString(customers));
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {            e.printStackTrace();
         }
-        dbCustomerLogger.log("print from DB");
+        customerLogger.log("print from DB");
     }
 
     private Customer[] addToArray(Customer c, Customer[] customers) {
