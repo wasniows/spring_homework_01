@@ -1,11 +1,13 @@
 package pl.coderslab.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.Arrays;
 
+@Component
 public class DbCustomerRepository implements CustomerRepository {
 
     private static final String CREATE_CUSTOMER_QUERY = "INSERT INTO customers(id, firstname, lastname) VALUES (?,?,?)";
@@ -22,9 +24,10 @@ public class DbCustomerRepository implements CustomerRepository {
 
     private CustomerLogger customerLogger;
 
-    public DbCustomerRepository(CustomerLogger customerLogger) {
+    public DbCustomerRepository(@Qualifier("dbCustomerLogger") CustomerLogger customerLogger) {
         this.customerLogger = customerLogger;
     }
+
 
     @Override
     public void addCustomer(Customer customer) {
@@ -53,7 +56,7 @@ public class DbCustomerRepository implements CustomerRepository {
     }
 
     @Override
-    public void allCustomers() {
+    public void printCustomers() {
         try (Connection connection = getConnection()) {
             Customer[] customers = new Customer[0];
             PreparedStatement statement = connection.prepareStatement(FIND_ALL_CUSTOMERS_QUERY);

@@ -23,11 +23,11 @@ public class SpringDiApplication {
         ListCustomerRepository listCustomerRepository = context
                 .getBean(ListCustomerRepository.class);
         listCustomerRepository.addCustomer(customer);
-        listCustomerRepository.allCustomers();
+        listCustomerRepository.printCustomers();
         listCustomerRepository.addCustomer(customer1);
-        listCustomerRepository.allCustomers();
+        listCustomerRepository.printCustomers();
         listCustomerRepository.delCustomer(customer);
-        listCustomerRepository.allCustomers();
+        listCustomerRepository.printCustomers();
 
         System.out.println();
         System.out.println("==========  DbCustomRepository ==========");
@@ -35,8 +35,8 @@ public class SpringDiApplication {
                 .getBean(DbCustomerRepository.class);
         dbCustomerRepository.addCustomer(customer);
         dbCustomerRepository.addCustomer(customer1);
-        dbCustomerRepository.allCustomers();
+        dbCustomerRepository.printCustomers();
         dbCustomerRepository.delCustomer(customer);
-        dbCustomerRepository.allCustomers();
+        dbCustomerRepository.printCustomers();
     }
 }

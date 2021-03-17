@@ -8,13 +8,14 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class ListCustomerRepository implements CustomerRepository{
 
     private List<Customer> customerList  = new ArrayList<>();
     private CustomerLogger customerLogger;
+    private FileCustomerLogger fileCustomerLogger;
 
-    public ListCustomerRepository(CustomerLogger customerLogger) {
+    public ListCustomerRepository(@Qualifier("fileCustomerLogger") CustomerLogger customerLogger) {
         this.customerLogger = customerLogger;
     }
 
@@ -32,7 +33,7 @@ public class ListCustomerRepository implements CustomerRepository{
     }
 
     @Override
-    public void allCustomers() {
+    public void printCustomers() {
         System.out.println(customerList);
         customerLogger.log("print from List");
     }

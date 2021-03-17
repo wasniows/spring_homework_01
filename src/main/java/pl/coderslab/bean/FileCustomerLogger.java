@@ -1,7 +1,6 @@
 package pl.coderslab.bean;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
@@ -9,14 +8,15 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Component
 public class FileCustomerLogger implements CustomerLogger{
 
     private String filename;
 
-
-    public FileCustomerLogger(String filename) {
+    public FileCustomerLogger(@Value("${file_name:log.txt}") String filename) {
         this.filename = filename;
     }
+
 
     @Override
     public void log(String operation) {

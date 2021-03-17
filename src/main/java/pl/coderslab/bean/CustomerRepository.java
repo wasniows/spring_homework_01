@@ -4,6 +4,6 @@ public interface CustomerRepository {
 
     void addCustomer(Customer customer);
     void delCustomer(Customer customer);
-    void allCustomers();
+    void printCustomers();
 
 }
